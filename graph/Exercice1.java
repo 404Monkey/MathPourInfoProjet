@@ -54,16 +54,8 @@ public class Exercice1 {
         this.setParent(s, parent);
     }
 
-
-    //Question d
-    public void parcoursLargeur(int r, GraphSimple src){
-
-        this.color = new Color[src.order()];
-        this.distance = new int[src.order()];
-        this.parent = new int[src.order()];
-
+    public void parcoursLargeurBis(int r, GraphSimple src){
         int x;
-        this.initColor();
         List<Integer> F = new LinkedList<>();
 
         F.add(r);
@@ -73,22 +65,41 @@ public class Exercice1 {
             x = F.get(0);
 
             for(int y : src.getAdjencyList(x)){
-               if(this.getColor(y).equals(Color.GREEN)){
-                   changeValue(y, getDistance(x)+1, Color.ORANGE, x);
-                   F.add(y);
-                   System.out.println(F);
-               }
+                if(this.getColor(y).equals(Color.GREEN)){
+                    changeValue(y, getDistance(x)+1, Color.ORANGE, x);
+                    F.add(y);
+                    System.out.println(F);
+                }
             }
             F.remove(0);
             this.setColor(x, Color.RED);
         }
     }
 
+
+    //Question d
+    public void parcoursLargeur(int r, GraphSimple src){
+
+        this.color = new Color[src.order()];
+        this.distance = new int[src.order()];
+        this.parent = new int[src.order()];
+
+        this.initColor();
+
+        this.parcoursLargeurBis(r, src);
+    }
+
     //Question g
     public void parcoursLargeur(GraphSimple src){
+        this.color = new Color[src.order()];
+        this.distance = new int[src.order()];
+        this.parent = new int[src.order()];
+
+        this.initColor();
+
         for(int x=1; x <= src.order(); x++){
             if(this.getColor(x).equals(Color.GREEN)){
-                this.parcoursLargeur(x, src);
+                this.parcoursLargeurBis(x, src);
             }
         }
     }
