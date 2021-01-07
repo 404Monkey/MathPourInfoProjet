@@ -107,7 +107,8 @@ public class Exercice1 {
 
         GraphSimple g = new GraphSimple(n);
         
-        GraphSimpleIO.getGraph(g.matrix);
+        int[][] ng = GraphSimpleIO.getGraph(g.matrix);
+        g.matrix = ng;
         GraphSimpleIO.printGraph(g.matrix);
 
         Exercice1 graph = new Exercice1();
