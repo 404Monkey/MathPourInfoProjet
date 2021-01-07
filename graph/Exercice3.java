@@ -1,6 +1,4 @@
-package parcourslargeur;
-
-import graph.*;
+package graph;
 
 public class exercice3 {
 
