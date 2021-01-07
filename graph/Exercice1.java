@@ -78,12 +78,13 @@ public class Exercice1 {
             for(int y : src.getAdjencyList(x)){
                System.out.println("entre dans le for : " + y);
                if(this.getColor(y-1).equals(Color.GREEN)){
-                   System.out.println("entre dans le if");
+                   System.out. println("entre dans le if");
                    changeValue(y, getDistance(x)+1, Color.ORANGE, x);
                    F.add(y);
                    System.out.println(F);
                }
             }
+            F.remove(0);
             this.setColor(x, Color.RED);
             System.out.println("rouge");
         }
