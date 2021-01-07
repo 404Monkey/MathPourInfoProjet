@@ -49,29 +49,38 @@ public class Exercice3 extends Exercice1{
     }
 
     public static void main(String[] args) {
+        // On initialise un scanner dans le fichier du graphe de graph_003
         GraphSimpleIO.InitializeSource("graph-003.alists");
+
+        // On récupère sa taille
         int n = GraphSimpleIO.scan.nextInt();
 
-        GraphSimple g = new GraphSimple(n);
+        // On crée un objet GraphSimple pour le graphe de graph_003
+        GraphSimple graph_003 = new GraphSimple(n);
 
-        int[][] ng = GraphSimpleIO.getGraph(g.matrix);
-        g.matrix = ng;
-        GraphSimpleIO.printGraph(g.matrix);
+        // on récupère grace à getGraph les listes d'adjacences sans les somments au début et les 0 à la fin
+        int[][] agraph_003 = GraphSimpleIO.getGraph(graph_003.matrix);
+        graph_003.matrix = agraph_003;
 
+        // On l'affiche pour vérifier
+        GraphSimpleIO.printGraph(graph_003.matrix);
+
+        // On crée une classe Exercice1 puis on lui applique la méthode nbComposanteConnex
         Exercice3 graph = new Exercice3();
+        graph.nbComposanteConnex(graph_003);
 
-        graph.nbComposanteConnex(g);
-
+        // On affiche
         System.out.print("    x :");
-        for(int i=0; i<g.order(); i++){
+        for(int i=0; i<graph_003.order(); i++){
             System.out.printf(" %2d", i+1);
         }
 
         System.out.println();
 
         System.out.print("cc(x) :");
-        for(int i=0; i<g.order(); i++){
+        for(int i=0; i<graph_003.order(); i++){
             System.out.printf( " %2d", graph.cc[i]);
         }
+        System.out.println();
     }
 }
