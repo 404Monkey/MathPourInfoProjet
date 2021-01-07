@@ -21,7 +21,6 @@ public class Exercice2 {
     }
 
     public static void main(String[] args) {
-        //TODO
         GraphSimpleIO.InitializeSource("graph-002.alists");
         int n = GraphSimpleIO.scan.nextInt();
 
