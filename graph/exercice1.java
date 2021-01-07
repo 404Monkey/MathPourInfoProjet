@@ -1,16 +1,19 @@
 package graph;
 
-public class exercice1 {
+public class Exercice1 {
 
     // Question a
     public enum Color {
         GREEN, ORANGE, RED
     }
 
+    /// Attributes ///
+    private GraphSimple graph;
+
     // Question b
-    private Color color[];
-    private int distance[];
-    private int parent[];
+    private Color[] color;
+    private int[] distance;
+    private int[] parent;
 
     public Color getColor(int x){
         return this.color[x];
@@ -36,6 +39,7 @@ public class exercice1 {
         this.parent[x] = par;
     }
 
+
     // Question c
     public void initColor(){
         for(int i = 0; i < this.color.length; i++) {
@@ -43,17 +47,29 @@ public class exercice1 {
         }
     }
 
-    // Question d
-    public void parcoursLargeur(int x, GraphSimple graph){
+
+    //Constructeur
+    public Exercice1(GraphSimple src){
+        this.graph = src;
+        this.color = new Color[src.order];
+        this.distance = new int[src.order];
+        this.parent = new int[src.order];
+
+        this.initColor();
+    }
+
+
+    //Question d
+    public void parcoursLargeur(int x){
         //TODO
     }
 
     //Question g
-    public void parcoursLargeur(GraphSimple graph){
+    public void parcoursLargeur(){
         //TODO
     }
 
-    // Question e et f
+    //Question e et f
     public static void main(String[] args) {
         //TODO
         // penser à utliser GraphSimpleIO (GraphSimpleIO.getMatrix() ou dans exo1.main)
