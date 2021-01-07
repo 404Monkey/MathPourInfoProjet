@@ -1,14 +1,14 @@
 package graph;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Exercice1 {
 
     // Question a
     public enum Color {
         GREEN, ORANGE, RED
     }
-
-    /// Attributes ///
-    private GraphSimple graph;
 
     // Question b
     private Color[] color;
@@ -40,7 +40,7 @@ public class Exercice1 {
     }
 
 
-    // Question c
+    //Question c
     public void initColor(){
         for(int i = 0; i < this.color.length; i++) {
             this.color[i] = Color.GREEN;
@@ -48,25 +48,47 @@ public class Exercice1 {
     }
 
 
-    //Constructeur
-    public Exercice1(GraphSimple src){
-        this.graph = src;
-        this.color = new Color[src.order];
-        this.distance = new int[src.order];
-        this.parent = new int[src.order];
-
-        this.initColor();
+    public void changeValue(int s, int dist, Color c, int parent){
+        this.setColor(s, c);
+        this.setDistance(s, dist);
+        this.setParent(s, parent);
     }
 
 
     //Question d
-    public void parcoursLargeur(int x){
-        //TODO
+    public void parcoursLargeur(int r, GraphSimple src){
+
+        this.color = new Color[src.order()];
+        this.distance = new int[src.order()];
+        this.parent = new int[src.order()];
+
+        int x;
+        this.initColor();
+        List<Integer> F = new LinkedList<>();
+
+        F.add(r);
+        changeValue(r, 0, Color.ORANGE, 0);
+
+        while (F.isEmpty()){
+            x = F.get(0);
+
+            for(int y : src.getAdjencyList(x)){
+               if(getColor(y) == Color.GREEN){
+                   changeValue(y, getDistance(x)+1, Color.ORANGE, x);
+                   F.add(y);
+               }
+            }
+            this.setColor(x, Color.RED);
+        }
     }
 
     //Question g
-    public void parcoursLargeur(){
-        //TODO
+    public void parcoursLargeur(GraphSimple src){
+        for(int x=1; x <= src.order(); x++){
+            if(getColor(x) == Color.GREEN){
+                parcoursLargeur(x, src);
+            }
+        }
     }
 
     //Question e et f

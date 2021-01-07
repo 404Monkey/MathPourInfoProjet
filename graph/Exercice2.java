@@ -1,6 +1,6 @@
 package graph;
 
-public class exercice2 {
+public class Exercice2 {
 
     private boolean isConnex;
 

@@ -1,6 +1,6 @@
 package graph;
 
-public class exercice3 {
+public class Exercice3 {
 
     public static void nbComposanteConnex(GraphSimple graph) {
         //TODO
