@@ -16,27 +16,27 @@ public class Exercice1 {
     private int[] parent;
 
     public Color getColor(int x){
-        return this.color[x];
+        return this.color[x-1];
     }
 
     public int getDistance(int x){
-        return this.distance[x];
+        return this.distance[x-1];
     }
     
     public int getParent(int x){
-        return this.parent[x];
+        return this.parent[x-1];
     }
 
     public void setColor(int x, Color c){
-        this.color[x] = c;
+        this.color[x-1] = c;
     }
 
     public void setDistance(int x, int dist){
-        this.distance[x] = dist;
+        this.distance[x-1] = dist;
     }
 
     public void setParent(int x, int par){
-        this.parent[x] = par;
+        this.parent[x-1] = par;
     }
 
 
@@ -61,24 +61,19 @@ public class Exercice1 {
         this.color = new Color[src.order()];
         this.distance = new int[src.order()];
         this.parent = new int[src.order()];
-        System.out.println("Jai init les tableaux");
 
         int x;
         this.initColor();
-        System.out.println("Jai init les couleurs");
         List<Integer> F = new LinkedList<>();
 
         F.add(r);
         changeValue(r, 0, Color.ORANGE, 0);
-        System.out.println("r en orange");
 
         while (!(F.isEmpty())){
             x = F.get(0);
 
             for(int y : src.getAdjencyList(x)){
-               System.out.println("entre dans le for : " + y);
-               if(this.getColor(y-1).equals(Color.GREEN)){
-                   System.out. println("entre dans le if");
+               if(this.getColor(y).equals(Color.GREEN)){
                    changeValue(y, getDistance(x)+1, Color.ORANGE, x);
                    F.add(y);
                    System.out.println(F);
@@ -86,15 +81,14 @@ public class Exercice1 {
             }
             F.remove(0);
             this.setColor(x, Color.RED);
-            System.out.println("rouge");
         }
     }
 
     //Question g
     public void parcoursLargeur(GraphSimple src){
         for(int x=1; x <= src.order(); x++){
-            if(getColor(x) == Color.GREEN){
-                parcoursLargeur(x, src);
+            if(this.getColor(x).equals(Color.GREEN)){
+                this.parcoursLargeur(x, src);
             }
         }
     }
@@ -103,7 +97,7 @@ public class Exercice1 {
     public static void main(String[] args) {
         //TODO
         // penser à utliser GraphSimpleIO (GraphSimpleIO.getMatrix() ou dans exo1.main)
-        GraphSimpleIO.InitializeSource("graph-002.alists");
+        GraphSimpleIO.InitializeSource("graph-003.alists");
         int n = GraphSimpleIO.scan.nextInt();
 
         GraphSimple g = new GraphSimple(n);
@@ -113,9 +107,11 @@ public class Exercice1 {
         GraphSimpleIO.printGraph(g.matrix);
 
         Exercice1 graph = new Exercice1();
-        graph.parcoursLargeur(1, g);
-        System.out.println("color :" + graph.color);
-        System.out.println("distance :" + graph.distance);
-        System.out.println("parent :" + graph.parent);
+        graph.parcoursLargeur(g);
+        for(int i =0; i < graph.color.length; i++){
+            System.out.println(graph.color[i]);
+            System.out.println(graph.distance[i]);
+            System.out.println(graph.parent[i]);
+        }
     }
 }
