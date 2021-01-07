@@ -19,13 +19,12 @@ public class Exercice3 extends Exercice1{
 
         while (!(F.isEmpty())){
             x = F.get(0);
+            cc[x-1] = r;
 
             for(int y : src.getAdjencyList(x)){
                 if(this.getColor(y).equals(Color.GREEN)){
                     changeValue(y, getDistance(x)+1, Color.ORANGE, x);
                     F.add(y);
-                    cc[y-1] = r;
-                    System.out.println(F);
                 }
             }
             F.remove(0);
@@ -34,7 +33,6 @@ public class Exercice3 extends Exercice1{
     }
 
     public void nbComposanteConnex(GraphSimple src) {
-        //TODO
         cc = new int[src.order()];
 
         this.color = new Color[src.order()];
@@ -51,8 +49,7 @@ public class Exercice3 extends Exercice1{
     }
 
     public static void main(String[] args) {
-        //TODO
-        GraphSimpleIO.InitializeSource("graph-002.alists");
+        GraphSimpleIO.InitializeSource("graph-003.alists");
         int n = GraphSimpleIO.scan.nextInt();
 
         GraphSimple g = new GraphSimple(n);
@@ -66,7 +63,7 @@ public class Exercice3 extends Exercice1{
         graph.nbComposanteConnex(g);
 
         for(int i=0; i<g.order(); i++){
-            System.out.println(graph.cc[i]);
+            System.out.print(graph.cc[i] + " ");
         }
     }
 }

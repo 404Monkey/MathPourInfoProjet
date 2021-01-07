@@ -11,9 +11,9 @@ public class Exercice1 {
     }
 
     // Question b
-    private Color[] color;
-    private int[] distance;
-    private int[] parent;
+    protected Color[] color;
+    protected int[] distance;
+    protected int[] parent;
 
     public Color getColor(int x){
         return this.color[x-1];
