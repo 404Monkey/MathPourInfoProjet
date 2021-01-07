@@ -12,6 +12,15 @@ public class GraphSimpleIO {
         scan = new Scanner(System.in);
     }
 
+    public static void InitializeSource(String source){
+        try
+        {
+        FileInputStream fichier = new FileInputStream(source); 
+        scan = new Scanner(fichier);
+        }
+        catch (FileNotFoundException ex){}
+    }
+
     public static int[][] getMatrix(int n) {
         int[][] matrix = new int[n][n];
 
@@ -42,9 +51,9 @@ public class GraphSimpleIO {
             }
             int[] nlist = new int[nbElem];
             for(int j = 0; j < nbElem; j++){
-                nlist[j] = list[i];
+                nlist[j] = list[j];
             }
-            graph[n] = nlist;
+            graph[n-1] = nlist;
         }
         return graph;
     }
