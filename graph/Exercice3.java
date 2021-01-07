@@ -62,8 +62,16 @@ public class Exercice3 extends Exercice1{
 
         graph.nbComposanteConnex(g);
 
+        System.out.print("    x :");
         for(int i=0; i<g.order(); i++){
-            System.out.print(graph.cc[i] + " ");
+            System.out.printf(" %2d", i+1);
+        }
+
+        System.out.println();
+
+        System.out.print("cc(x) :");
+        for(int i=0; i<g.order(); i++){
+            System.out.printf( " %2d", graph.cc[i]);
         }
     }
 }
