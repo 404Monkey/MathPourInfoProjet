@@ -22,5 +22,23 @@ public class Exercice2 {
 
     public static void main(String[] args) {
         //TODO
+        GraphSimpleIO.InitializeSource("graph-002.alists");
+        int n = GraphSimpleIO.scan.nextInt();
+
+        GraphSimple g = new GraphSimple(n);
+
+        int[][] ng = GraphSimpleIO.getGraph(g.matrix);
+        g.matrix = ng;
+        GraphSimpleIO.printGraph(g.matrix);
+
+        Exercice2 graph = new Exercice2();
+        graph.testConnex(g);
+
+        if(graph.isConnex == true){
+            System.out.println("Le graphe est connexe !");
+        }
+        else{
+            System.out.println("Le graphe n'est pas connexe !");
+        }
     }
 }
