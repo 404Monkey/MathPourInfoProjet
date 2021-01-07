@@ -1,4 +1,4 @@
-package parcoursLargeur;
+package parcourslargeur;
 
 import graph.*;
 
